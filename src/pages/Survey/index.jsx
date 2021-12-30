@@ -1,23 +1,23 @@
-import style from "./style.module.css";
-import OpenText from "../../components/OpenText";
-import MultipleChoice from "../../components/MultipleChoice";
+import style from './style.module.css';
+import OpenText from '../../components/OpenText';
+import MultipleChoice from '../../components/MultipleChoice';
 
-import data from "../../dataFromAPI/formattedQuestions.json";
+import data from '../../dataFromAPI/formattedQuestions.json';
 
 function Survey(props) {
-  return (
-    <div className={style.survey}>
-      {data.questionnaire.map((question, idx) => {
-        if (question.type === "multiple_choice") {
-          return <MultipleChoice data={question} key={idx} />;
-        } else if (question.type === "open_text") {
-          return <OpenText data={question} key={idx} />;
-        } else {
-          return null;
-        }
-      })}
-    </div>
-  );
+    return (
+        <div className={style.survey}>
+            {data.questionnaire.map((question, idx) => {
+                if (question.type === 'multiple_choice') {
+                    return <MultipleChoice data={question} key={idx} />;
+                } else if (question.type === 'open_text') {
+                    return <OpenText data={question} key={idx} />;
+                } else {
+                    return null;
+                }
+            })}
+        </div>
+    );
 }
 
 export default Survey;
