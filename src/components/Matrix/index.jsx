@@ -8,38 +8,41 @@ const { Paragraph } = Typography;
 function Matrix({ instructions, title, columns, questions, answers }) {
     const [valueArr, setValueArr] = React.useState([])
 
-    const onChange = (e, idx) => {
-        console.log(idx);
+    // Initialize state of the radios.
+    React.useEffect(() => {
+        setValueArr(questions.map((map) => "-1"))
+    }, [questions, answers])
+
+    // Changes the active radio per group.
+    const onChange = (answer, idx) => {
         setValueArr((prev) => {
-            prev[idx] = e.target.value
-            return prev
+            prev[idx] = answer
+            return [...prev]
         })
     }
 
     return (
         <div>
             <Paragraph><b>Instructions:</b>{instructions}</Paragraph>
-            <Row gutter={[2, 2]}>
-                <Col span={12}><div>{title}</div></Col>
+            <Row gutter={[2, 2]} wrap={false}>
+                <Col span={12} flex={"12"}><div>{title}</div></Col>
                 {columns.map((column) => {
-                    return <Col span={12 / columns.length}><div>{column}</div></Col>
+                    return <Col span={12 / columns.length} flex={`${12 / columns.length}`}><div>{column}</div></Col>
                 })}
             </Row>
-            {questions.map((question, idx) => {
+            {questions.map((question, questionIndex) => {
                 return (
-                    <Row gutter={[2, 2]}>
-                        <Col span={12}><div>{question.question}</div></Col>
-                        <Radio.Group onChange={(e) => { onChange(e, idx) }} name={idx}>
-                            {answers.map((answer) => {
-                                return <Col span={12 / answers.length}>
-                                    <Radio name={idx} value={answer}>{answer}</Radio>
-                                </Col>
-                            })}
-                        </Radio.Group>
+                    <Row gutter={[2, 2]} wrap={false}>
+                        <Col span={12} flex={"12"}><div>{question.question}</div></Col>
+                        {answers.map((answer) => {
+                            return <Col span={12 / answers.length} flex={`${12 / columns.length}`}>
+                                <Radio checked={valueArr[questionIndex] == answer} onChange={(e) => { onChange(answer, questionIndex) }}>{answer}</Radio>
+                            </Col>
+                        })}
                     </Row>
                 )
             })}
-        </div>
+        </div >
     )
 }
 
