@@ -1,12 +1,11 @@
-import './App.css';
-import { useEffect } from 'react'
+import "./App.css";
+import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import axios from 'axios'
+import axios from "axios";
 
-import Login from './pages/Login'
-import Home from './pages/Home'
-
-
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import Survey from "./pages/Survey";
 
 function App() {
   const location = useLocation();
@@ -23,20 +22,19 @@ function App() {
   //     .then((res) => {
   //       res.data
   //     })
-  //     .catch() 
+  //     .catch()
   // }, [])
-
 
   if (location.pathname === "/login") {
     return <Login />;
+  } else if (location.pathname === "/survey") {
+    return <Survey />;
   }
-
 
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
-
       </Routes>
     </div>
   );
