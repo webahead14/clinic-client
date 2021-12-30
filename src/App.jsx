@@ -1,6 +1,6 @@
 import './App.css';
 import { useEffect } from 'react'
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from 'react-router-dom';
 import axios from 'axios'
 
 import Login from './pages/Login'
@@ -27,7 +27,7 @@ function App() {
   // }, [])
 
 
-  if (location.pathname === "/login") {
+  if (location.pathname === '/login') {
     return <Login />;
   }
 
