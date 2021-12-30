@@ -1,0 +1,60 @@
+body {
+  background-color: #ebf5fd;
+}
+/* .background {
+  background-image: url(./waves.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: auto;
+  height: auto;
+} */
+.waves {
+  position: relative;
+  height: 1000px;
+}
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: Roboto;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 52px;
+  line-height: 169px;
+  color: #a0bfdd;
+}
+.inputs {
+  margin-top: 100px;
+}
+.usernameInput {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  height: 40px;
+  background: rgba(220, 215, 215, 1);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
+  border-radius: 7px;
+}
+.passwordInput {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  width: 50%;
+  height: 40px;
+  background: rgba(220, 215, 215, 1);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
+  border-radius: 7px;
+}
+.loginButton {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  background: #a8c9e8;
+  box-shadow: 4px 6px 4px rgba(0, 0, 0, 0.36);
+  border-radius: 7px;
+}
