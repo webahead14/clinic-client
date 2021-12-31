@@ -2,13 +2,13 @@
   "questionnaire": [
     {
       "type": "matrix",
-      "title": "Do you feel bothered from:",
+      "title": "In the past week, how much were you bothered by:",
       "columns": [
-        "Poorly",
-        "Semi-Poorly",
-        "Avarage",
-        "Semi-Strongly",
-        "Strongly"
+        "Not at all",
+        "A little bit",
+        "Moderately",
+        "Quite a bit",
+        "Extremely"
       ],
       "answers": ["0", "1", "2", "3", "4"],
       "instructions": "Below is a list of problems and complaints that people sometimes have in response to stressful life experiences. How much you have been bothered by that problem IN THE LAST MONTH.",

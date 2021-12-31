@@ -1,13 +1,7 @@
 {
   "extends": ["react-app"],
   "rules": {
-    "quotes": [
-      0,
-      "error",
-      "single",
-      {
-        "avoidEscape": true
-      }
-    ]
+    "quotes": ["error", "single"],
+    "semi": ["error", "never"]
   }
 }
