@@ -37,7 +37,7 @@ function Matrix({ instructions, title, columns, questions, answers }) {
                         {answers.map((answer) => {
                             return <Col span={12 / answers.length} flex={`${12 / columns.length}`}>
                                 <div className={style.matrixCell}>
-                                    <Radio checked={valueArr[questionIndex] == answer} onChange={(e) => { onChange(answer, questionIndex) }}>{answer}</Radio>
+                                    <Radio style={{ margin: "0px 0px" }} checked={valueArr[questionIndex] == answer} onChange={(e) => { onChange(answer, questionIndex) }}>{answer}</Radio>
                                 </div>
                             </Col>
                         })}
