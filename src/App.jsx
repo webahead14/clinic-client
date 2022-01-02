@@ -1,13 +1,14 @@
-import "./App.css";
-import { useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
-import axios from "axios";
+import './App.css'
+import { useEffect } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import axios from 'axios'
 
-import Login from "./pages/Login";
-import Home from "./pages/Home";
+import Login from './pages/Login'
+import Home from './pages/Home'
+import Survey from './pages/Survey'
 
 function App() {
-  const location = useLocation();
+  const location = useLocation()
 
   // Just an axios example
   // useEffect(() => {
@@ -24,17 +25,18 @@ function App() {
   //     .catch()
   // }, [])
 
-  if (location.pathname === "/login") {
-    return <Login />;
+  if (location.pathname === '/login') {
+    return <Login />
   }
 
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/survey" element={<Survey />} />
       </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,6 +1,6 @@
-import style from "./style.module.css";
+import style from './style.module.css'
 // React Wavify
-import Wave from "react-wavify";
+import Wave from 'react-wavify'
 
 function Login(props) {
   return (
@@ -44,7 +44,7 @@ function Login(props) {
         }}
       />
     </div>
-  );
+  )
 }
 
-export default Login;
+export default Login
