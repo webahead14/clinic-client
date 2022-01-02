@@ -30,7 +30,7 @@ body {
   height: 200px;
 }
 /* ID input */
-.usernameInput {
+.idInput {
   z-index: 3;
   width: 60%;
   height: 40px;
@@ -44,7 +44,7 @@ body {
   outline: 0;
 }
 /* password input */
-.passwordInput {
+.passcodeInput {
   z-index: 3;
   width: 60%;
   height: 40px;
