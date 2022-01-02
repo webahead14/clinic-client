@@ -14,15 +14,14 @@ function Login(props) {
           className={style.usernameInput}
           placeholder="Id"
           required
-        ></input>
-        <br />
+        />
         {/* password input */}
         <input
           type="password"
           className={style.passwordInput}
           placeholder="Passcode"
           required
-        ></input>
+        />
         <br />
         {/* login button */}
         <button className={style.loginButton}>Log-in</button>
