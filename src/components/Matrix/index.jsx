@@ -22,21 +22,23 @@ function Matrix({ instructions, title, columns, questions, answers }) {
     }
 
     return (
-        <div>
-            <Paragraph><b>Instructions:</b>{instructions}</Paragraph>
+        <div className={style.matrixFrame}>
+            <Paragraph><b>Instructions:</b> {instructions}</Paragraph>
             <Row gutter={[2, 2]} wrap={false}>
-                <Col span={12} flex={"12"}><div>{title}</div></Col>
+                <Col span={12} flex={"12"}><div className={style.matrixTitleCell}>{title}</div></Col>
                 {columns.map((column) => {
-                    return <Col span={12 / columns.length} flex={`${12 / columns.length}`}><div>{column}</div></Col>
+                    return <Col span={12 / columns.length} flex={`${12 / columns.length}`}><div className={style.matrixTitleCell}>{column}</div></Col>
                 })}
             </Row>
             {questions.map((question, questionIndex) => {
                 return (
                     <Row gutter={[2, 2]} wrap={false}>
-                        <Col span={12} flex={"12"}><div>{question.question}</div></Col>
+                        <Col span={12} flex={"12"}><div className={style.matrixCell}>{question.question}</div></Col>
                         {answers.map((answer) => {
                             return <Col span={12 / answers.length} flex={`${12 / columns.length}`}>
-                                <Radio checked={valueArr[questionIndex] == answer} onChange={(e) => { onChange(answer, questionIndex) }}>{answer}</Radio>
+                                <div className={style.matrixCell}>
+                                    <Radio checked={valueArr[questionIndex] == answer} onChange={(e) => { onChange(answer, questionIndex) }}>{answer}</Radio>
+                                </div>
                             </Col>
                         })}
                     </Row>
