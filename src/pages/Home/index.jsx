@@ -1,33 +1,31 @@
 import style from './style.module.css'
-// React Wavify
-import Wave from 'react-wavify'
-// star
+import React, { useState, useEffect } from 'react'
 
 function Home(props) {
   return (
     <div>
-      <div className={style.title_p}>
-        <h1 className={style.title}>Hello!</h1>
-        <p className={style.par}>We’re glad to see you</p>
+      <div className={style.logo}>
+        <p>Company Logo</p>
       </div>
-      <div className={style.buttons}>
-        {/* redirct to login page */}
-        <form action="/login" className={style.center}>
-          <button className={style.loginButton}>Log-in</button>
-        </form>
+      <h1 className={style.title}>Available Questionnaires</h1>
+      <div className={style.quest}>
+        <div className={style.firstone}>
+          <p>phq</p>
+          <p>Week 1, Thursday 13:00</p>
+        </div>
+        <div className={style.firstone}>
+          <p>phq</p>
+          <p>Week 1, Thursday 13:00</p>
+        </div>
+        <div className={style.firstone}>
+          <p>phq</p>
+          <p>Week 1, Thursday 13:00</p>
+        </div>
+        <div className={style.firstone}>
+          <p>phq</p>
+          <p>Week 1, Thursday 13:00</p>
+        </div>
       </div>
-      {/* React Wavify */}
-      <Wave
-        className={style.waves}
-        fill="#DAEDFF"
-        paused={false}
-        options={{
-          height: 20,
-          amplitude: 30,
-          speed: 0.1,
-          points: 5,
-        }}
-      />
     </div>
   )
 }
