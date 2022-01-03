@@ -8,6 +8,7 @@ import MultipleChoice from '../MultipleChoice'
 
 function MockSurvey(props) {
   const [currQuestion, setCurrQuestion] = React.useState(0)
+  const [questionAnswers, setQuestionAnswers] = React.useState({})
 
   const nextQuestion = () => {
     setCurrQuestion((prev) => props.dataList.length - 1 > prev ? prev + 1 : prev)
@@ -17,10 +18,14 @@ function MockSurvey(props) {
     setCurrQuestion((prev) => prev > 0 ? prev - 1 : prev)
   }
 
+  const saveAnswer = (answer) => {
+    setQuestionAnswers({ ...questionAnswers, [currQuestion]: [answer] })
+  }
+
   return (
     <div className={style.MockSurvey}>
       <br />
-      <MultipleChoice data={props.dataList[currQuestion]} />
+      <MultipleChoice data={props.dataList[currQuestion]} setAnswer={saveAnswer} answers={questionAnswers[currQuestion]} />
 
       <br />
 

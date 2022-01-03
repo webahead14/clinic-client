@@ -11,13 +11,15 @@ function MultipleChoice(props) {
   const onChange = (key) => {
     if (key === 'radio') {
       return (event) => {
-        console.log('radio checked', event.target.value)
         setAnswers({ ...answers, answer: [event.target.value] })
+        if (props.setAnswer)
+          props.setAnswer(event.target.value)
       }
     } else {
       return (event) => {
-        console.log('checked values = ', event)
         setAnswers({ ...answers, answer: [event] })
+        if (props.setAnswer)
+          props.setAnswer(event)
       }
     }
   }
