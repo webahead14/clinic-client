@@ -6,6 +6,15 @@ import { Button } from 'antd'
 
 import MultipleChoice from '../MultipleChoice'
 
+function matrixDataParser(matrixData) {
+  if (matrixData.type != 'matrix') return {}
+  let newData = { instructions: matrixData.instructions, title: matrixData.title, columns: matrixData.columns }
+  newData.questions = matrixData.questions.map(question => { return { id: question.id, type: 'multiple_choice', choice_type: 'Radio', question: question.question, answers: matrixData.answers.map(answer => { return { text: answer } }) } })
+
+  return newData
+}
+
+
 function MockSurvey(props) {
   const [currQuestion, setCurrQuestion] = React.useState(0)
   const [questionAnswers, setQuestionAnswers] = React.useState({})
@@ -19,7 +28,7 @@ function MockSurvey(props) {
   }
 
   const saveAnswer = (answer) => {
-    setQuestionAnswers({ ...questionAnswers, [currQuestion]: [answer] })
+    setQuestionAnswers({ ...questionAnswers, [currQuestion]: answer })
   }
 
   return (

@@ -11,7 +11,7 @@ function Home(props) {
                 <h1>Home</h1>
                 <Button type='primary'>Click me bro!</Button>
             </div>
-            <MockSurvey dataList={[data.questionnaire[1], data.questionnaire[2]]} />
+            <MockSurvey dataList={[data.questionnaire[0], data.questionnaire[2]]} />
         </>
     )
 }
