@@ -1,7 +1,7 @@
 import style from './style.module.css'
 // React Wavify
 import Wave from 'react-wavify'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 
 function Login(props) {
@@ -9,19 +9,20 @@ function Login(props) {
     gov_id: '',
     passcode: '',
   })
-  const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
+  const [byMail, setByMail] = useState(false)
+  const [placeholder, setPlaceHolder] = useState('id')
 
   function fetchLogin() {
-    setLoading(true)
-    axios.post('http://localhost:4000/api/client/login', client).then((res) => {
-      setLoading(false)
-      if (!res.data) {
-        setError('error with fetch')
-      } else {
+    axios
+      .post('http://localhost:4000/api/client/login', client)
+      .then((res) => {
         window.localStorage.setItem('access_token', res.data.access_token)
-      }
-    })
+      })
+      .catch((err) => {
+        console.log(err)
+        setError('Please Try Again')
+      })
   }
 
   return (
@@ -33,9 +34,13 @@ function Login(props) {
         <input
           type="text"
           className={style.idInput}
-          placeholder="Id"
+          placeholder={placeholder}
           required
-          onChange={(e) => setClient({ ...client, gov_id: e.target.value })}
+          onChange={(e) => {
+            byMail
+              ? setClient({ ...client, email: e.target.value })
+              : setClient({ ...client, gov_id: e.target.value })
+          }}
         />
         {/* password input */}
         <input
@@ -47,6 +52,7 @@ function Login(props) {
         />
         <br />
         {/* login button */}
+        {error && <div className={style.error}>{error}</div>}
 
         <button
           className={style.loginButton}
@@ -60,6 +66,15 @@ function Login(props) {
         <a href="" className={style.loginchanger}>
           Login By Email
         </a>
+        <div
+          onClick={() => {
+            setByMail(true)
+            setPlaceHolder('email')
+            console.log(byMail)
+          }}
+        >
+          log in by email?
+        </div>
       </div>
       {/* React Wavify */}
       <Wave
