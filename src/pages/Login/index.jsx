@@ -1,14 +1,18 @@
 import style from './style.module.css'
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router'
+
 // React Wavify
 import Wave from 'react-wavify'
-import { useState } from 'react'
 import axios from 'axios'
 
 function Login(props) {
+  const goTo = useNavigate()
+
   const [client, setClient] = useState({
     gov_id: '',
     passcode: '',
+    email: '',
   })
   const [error, setError] = useState(false)
 
@@ -23,7 +27,17 @@ function Login(props) {
         setError('Please Try Again')
       })
   }
-
+  function fetchLoginByEmail() {
+    axios
+      .post('http://localhost:4000/api/client/login', client)
+      .then((res) => {
+        window.localStorage.setItem('access_token', res.data.access_token)
+      })
+      .catch((err) => {
+        console.log(err)
+        setError('Please Try Again')
+      })
+  }
   const [log, setLog] = useState(true)
   return (
     // titlehan
@@ -34,38 +48,59 @@ function Login(props) {
         {log ? (
           <input
             type="text"
-            className={style.usernameInput}
+            className={style.idInput}
             placeholder="Id"
             required
+            onChange={(e) =>
+              setClient({ ...client, gov_id: e.target.value, email: undefined })
+            }
           />
         ) : (
           <input
             type="text"
-            className={style.usernameInput}
+            className={style.idInput}
             placeholder="Email"
             required
+            onChange={(e) =>
+              setClient({ ...client, email: e.target.value, gov_id: undefined })
+            }
           />
         )}
         {/* password input */}
-        <input
-          type="password"
-          className={style.passcodeInput}
-          placeholder="Passcode"
-          required
-          onChange={(e) => setClient({ ...client, passcode: e.target.value })}
-        />
+        {log ? (
+          <input
+            type="password"
+            className={style.passcodeInput}
+            placeholder="Passcode"
+            required
+            onChange={(e) => setClient({ ...client, passcode: e.target.value })}
+          />
+        ) : null}
+
         <br />
         {/* login button */}
         {error && <div className={style.error}>{error}</div>}
+        {log ? (
+          <button
+            className={style.loginButton}
+            onClick={() => {
+              fetchLogin()
+            }}
+          >
+            Log-in
+          </button>
+        ) : (
+          <button
+            className={style.loginButton}
+            onClick={() => {
+              fetchLoginByEmail()
+              goTo('/passcodeByEmail')
+            }}
+          >
+            Send Passcode to Email
+          </button>
+        )}
 
-        <button
-          className={style.loginButton}
-          onClick={() => {
-            fetchLogin()
-          }}
-        >
-          Log-in
-        </button>
         {/* login by email */}
         {log ? (
           <p
