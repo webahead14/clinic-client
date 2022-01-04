@@ -4,9 +4,9 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import axios from 'axios'
 
 import Login from './pages/Login'
-import Home from './pages/Home'
+import Welcome from './pages/Welcome'
 import Survey from './pages/Survey'
-
+import Home from './pages/Home'
 function App() {
   const location = useLocation()
 
@@ -32,8 +32,9 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Welcome />} />
         <Route path="/survey" element={<Survey />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </div>
   )
