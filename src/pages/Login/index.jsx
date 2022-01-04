@@ -1,5 +1,5 @@
 import style from './style.module.css'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 
 // React Wavify
@@ -21,6 +21,7 @@ function Login(props) {
       .post('http://localhost:4000/api/client/login', client)
       .then((res) => {
         window.localStorage.setItem('access_token', res.data.access_token)
+        goTo('/home')
       })
       .catch((err) => {
         console.log(err)
@@ -32,6 +33,7 @@ function Login(props) {
       .post('http://localhost:4000/api/client/login', client)
       .then((res) => {
         window.localStorage.setItem('access_token', res.data.access_token)
+        goTo('/home')
       })
       .catch((err) => {
         console.log(err)
@@ -51,9 +53,10 @@ function Login(props) {
             className={style.idInput}
             placeholder="Id"
             required
-            onChange={(e) =>
+            onChange={(e) => {
               setClient({ ...client, gov_id: e.target.value, email: undefined })
-            }
+              setError(false)
+            }}
           />
         ) : (
           <input
@@ -61,9 +64,10 @@ function Login(props) {
             className={style.idInput}
             placeholder="Email"
             required
-            onChange={(e) =>
+            onChange={(e) => {
               setClient({ ...client, email: e.target.value, gov_id: undefined })
-            }
+              setError(false)
+            }}
           />
         )}
         {/* password input */}
