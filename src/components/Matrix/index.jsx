@@ -14,6 +14,7 @@ function matrixDataParser(matrixData) {
     title: matrixData.title,
     columns: matrixData.columns,
   }
+
   // Changes the questions from matrix form into a form that is compatible with multiple choice component
   newData.questions = matrixData.questions.map((question) => {
     return {
