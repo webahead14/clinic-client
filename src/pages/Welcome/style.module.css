@@ -1,0 +1,51 @@
+/* Roboto Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,400;1,500&display=swap');
+
+body {
+  background-color: #ebf5fd;
+  overflow: hidden;
+}
+
+/* welcome page titles */
+.title {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 900;
+  font-size: 52px;
+  line-height: 169px;
+  margin: 70px 0 0 0;
+  color: #a0bfdd;
+}
+.par {
+  margin-top: -50px;
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 900;
+  font-size: 20px;
+  color: #7e86ce;
+}
+/* React Wavify */
+.waves {
+  position: relative;
+  height: 1000px;
+}
+/*  button that redirct you */
+.buttons,
+.center {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+}
+/* Login page */
+.loginButton {
+  position: absolute;
+  z-index: 3;
+  transform: scale(150%);
+  margin-top: 190px;
+  padding: 3px 30px;
+  color: #f2f2f2;
+  background: #a8c9e8;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 7px;
+  border: 0;
+}
