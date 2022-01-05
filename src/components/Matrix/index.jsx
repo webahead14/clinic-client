@@ -38,10 +38,12 @@ function Matrix({
   questions,
   answers,
   desktopMode,
+  setAnswers,
+  startingQuestionAnswers,
 }) {
   //  Answer storage (Mobile)
   const [currQuestion, setCurrQuestion] = React.useState(0)
-  const [questionAnswers, setQuestionAnswers] = React.useState({})
+  const [questionAnswers, setQuestionAnswers] = React.useState(startingQuestionAnswers)
   //  Parsed data (Mobile)
   const multipleQuestionParsedMatrix = matrixDataParser({
     type: 'matrix',
@@ -64,6 +66,7 @@ function Matrix({
   //   (Mobile)
   const saveAnswer = (answer) => {
     setQuestionAnswers({ ...questionAnswers, [currQuestion]: answer })
+    setAnswers({ ...questionAnswers, [currQuestion]: answer })
   }
 
   // Answer storage (Desktop)
@@ -151,11 +154,6 @@ function Matrix({
       {multipleQuestionParsedMatrix.questions.length - 1 > currQuestion ? (
         <Button type="primary" onClick={nextQuestion}>
           Next Question
-        </Button>
-      ) : null}
-      {multipleQuestionParsedMatrix.questions.length - 1 == currQuestion ? (
-        <Button type="primary" onClick={nextQuestion}>
-          Submit
         </Button>
       ) : null}
     </div>

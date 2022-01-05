@@ -1,81 +1,79 @@
-{
-    "questionnaire": [
-        {
-            "type": "matrix",
-            "title": "In the past week, how much were you bothered by:",
-            "columns": [
-                "Not at all",
-                "A little bit",
-                "Moderately",
-                "Quite a bit",
-                "Extremely"
-            ],
-            "answers": [
-                "0",
-                "1",
-                "2",
-                "3",
-                "4"
-            ],
-            "instructions": "Below is a list of problems and complaints that people sometimes have in response to stressful life experiences. How much you have been bothered by that problem IN THE LAST MONTH.",
-            "questions": [
-                {
-                    "id": "1",
-                    "question": "Feeling very upset when something reminds you of the stressful experience?"
-                },
-                {
-                    "id": "2",
-                    "question": "Trouble remembering important parts of the stressful experience?"
-                },
-                {
-                    "id": "3",
-                    "question": "Loss of interest in activities that you used to enjoy?"
-                },
-                {
-                    "id": "4",
-                    "question": "Irritable behaviour, angry outbursts, or acting aggressively??"
-                }
-            ]
-        },
-        {
-            "id": "5",
-            "type": "multiple_choice",
-            "choice_type": "Radio",
-            "question": "Which choice of the choices below you think it will impact you stress the most?",
-            "answers": [
-                {
-                    "text": "Smoke"
-                },
-                {
-                    "text": "Exercise"
-                },
-                {
-                    "text": "Drink"
-                }
-            ]
-        },
-        {
-            "id": "6",
-            "type": "multiple_choice",
-            "choice_type": "Checkbox",
-            "question": "Mark the type of injuries you've encountered lately:",
-            "answers": [
-                {
-                    "text": "Physical Pain"
-                },
-                {
-                    "text": "Mental Pain"
-                },
-                {
-                    "text": "Spiritual Pain"
-                }
-            ]
-        },
-        {
-            "type": "open_text",
-            "id": "7",
-            "question": "Anything else?",
-            "placeholder": "Enter your answer here"
-        }
-    ]
-}
+[
+    {
+        "type": "matrix",
+        "title": "In the past week, how much were you bothered by:",
+        "columns": [
+            "Not at all",
+            "A little bit",
+            "Moderately",
+            "Quite a bit",
+            "Extremely"
+        ],
+        "answers": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+        ],
+        "instructions": "Below is a list of problems and complaints that people sometimes have in response to stressful life experiences. How much you have been bothered by that problem IN THE LAST MONTH.",
+        "questions": [
+            {
+                "id": "1",
+                "question": "Feeling very upset when something reminds you of the stressful experience?"
+            },
+            {
+                "id": "2",
+                "question": "Trouble remembering important parts of the stressful experience?"
+            },
+            {
+                "id": "3",
+                "question": "Loss of interest in activities that you used to enjoy?"
+            },
+            {
+                "id": "4",
+                "question": "Irritable behaviour, angry outbursts, or acting aggressively??"
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "type": "multiple_choice",
+        "choice_type": "Radio",
+        "question": "Which choice of the choices below you think it will impact you stress the most?",
+        "answers": [
+            {
+                "text": "Smoke"
+            },
+            {
+                "text": "Exercise"
+            },
+            {
+                "text": "Drink"
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "type": "multiple_choice",
+        "choice_type": "Checkbox",
+        "question": "Mark the type of injuries you've encountered lately:",
+        "answers": [
+            {
+                "text": "Physical Pain"
+            },
+            {
+                "text": "Mental Pain"
+            },
+            {
+                "text": "Spiritual Pain"
+            }
+        ]
+    },
+    {
+        "type": "open_text",
+        "id": "7",
+        "question": "Anything else?",
+        "placeholder": "Enter your answer here"
+    }
+]
