@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import Welcome from './pages/Welcome'
 import Survey from './pages/Survey'
 import Home from './pages/Home'
+import Completed from './pages/Completed'
 function App() {
   const location = useLocation()
 
@@ -35,6 +36,7 @@ function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/survey" element={<Survey />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/Completed" element={<Completed />} />
       </Routes>
     </div>
   )
