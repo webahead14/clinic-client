@@ -9,7 +9,6 @@ function OpenText(props) {
   const onChange = (e) => {
     setInput(e.target.value)
     props.setAnswer(e.target.value)
-    console.log(e.target.value)
   }
   return (
     <div className={style.openText}>

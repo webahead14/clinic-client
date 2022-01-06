@@ -3,20 +3,18 @@ import React from 'react'
 
 import style from './style.module.css'
 
-import { Button } from 'antd'
-
 import MultipleChoice from '../MultipleChoice'
 
 const { Paragraph } = Typography
 
 //Parses default matrix data json into one compatible to be used by multiple choice component.
 function matrixDataParser(matrixData) {
-  if (matrixData.type != 'matrix') return {}
   let newData = {
     instructions: matrixData.instructions,
     title: matrixData.title,
     columns: matrixData.columns,
   }
+  // Changes the questions from matrix form into a form that is compatible with multiple choice component
   newData.questions = matrixData.questions.map((question) => {
     return {
       id: question.id,
@@ -39,10 +37,10 @@ function Matrix({
   answers,
   desktopMode,
   setAnswers,
-  startingQuestionAnswers,
+  startingQuestionAnswers = {},
+  currQuestion = 0,
 }) {
   //  Answer storage (Mobile)
-  const [currQuestion, setCurrQuestion] = React.useState(0)
   const [questionAnswers, setQuestionAnswers] = React.useState(startingQuestionAnswers)
   //  Parsed data (Mobile)
   const multipleQuestionParsedMatrix = matrixDataParser({
@@ -53,17 +51,7 @@ function Matrix({
     questions,
     answers,
   })
-  //   (Mobile)
-  const nextQuestion = () => {
-    setCurrQuestion((prev) =>
-      multipleQuestionParsedMatrix.questions.length - 1 > prev ? prev + 1 : prev
-    )
-  }
-  //   (Mobile)
-  const prevQuestion = () => {
-    setCurrQuestion((prev) => (prev > 0 ? prev - 1 : prev))
-  }
-  //   (Mobile)
+
   const saveAnswer = (answer) => {
     setQuestionAnswers({ ...questionAnswers, [currQuestion]: answer })
     setAnswers({ ...questionAnswers, [currQuestion]: answer })
@@ -146,16 +134,6 @@ function Matrix({
         answers={questionAnswers[currQuestion]}
       />
       <br />
-      {currQuestion > 0 ? (
-        <Button type="primary" onClick={prevQuestion}>
-          Prev Question
-        </Button>
-      ) : null}
-      {multipleQuestionParsedMatrix.questions.length - 1 > currQuestion ? (
-        <Button type="primary" onClick={nextQuestion}>
-          Next Question
-        </Button>
-      ) : null}
     </div>
   )
 }
