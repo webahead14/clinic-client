@@ -8,7 +8,7 @@ function OpenText(props) {
   const [input, setInput] = useState('')
   const onChange = (e) => {
     setInput(e.target.value)
-    console.log(e.target.value)
+    props.setAnswer(e.target.value)
   }
   return (
     <div className={style.openText}>
@@ -18,6 +18,7 @@ function OpenText(props) {
         onChange={onChange}
         rows={3}
         placeholder={props.data.placeholder}
+        value={props.answers}
       />
     </div>
   )

@@ -1,0 +1,19 @@
+.matrixFrame{
+    width:50%;
+    height:50%;
+}
+
+.matrixTitleCell {
+    height:50px;
+    border: 1px solid black;
+}
+
+.matrixCell {
+    text-align: start;
+    height:50px;
+    border: 1px solid black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
