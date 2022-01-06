@@ -10,7 +10,7 @@ import { Button } from 'antd'
 
 const { REACT_APP_API_URL } = process.env
 
-function Survey({ id, ...props }) {
+function Survey({ id = 1, ...props }) {
   const [data, setData] = React.useState([''])
   const [currQuestion, setCurrQuestion] = React.useState(0)
   const [questionAnswers, setQuestionAnswers] = React.useState({})
@@ -49,7 +49,7 @@ function Survey({ id, ...props }) {
   }
 
   React.useEffect(() => {
-    axios.get(REACT_APP_API_URL + '/api/client/survey/' + id).then(setData)
+    axios.get(REACT_APP_API_URL + '/api/client/survey/' + id).then((data) => data.data).then(setData)
   }, [])
 
   React.useEffect(() => {
