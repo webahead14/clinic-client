@@ -37,13 +37,13 @@ function Survey({ id, ...props }) {
   return (
     <div className={style.survey}>
       {
-        data[currQuestion].type == 'matrix' ? (
-          <Matrix {...data[currQuestion]} setAnswers={saveAnswer} startingQuestionAnswers={questionAnswers[currQuestion] || {}} />
-        ) : data[currQuestion].type == 'multiple_choice' ? (
-          <MultipleChoice data={data[currQuestion]} setAnswer={saveAnswer} answers={questionAnswers[currQuestion]} />
-        ) : data[currQuestion].type == 'open_text' ? (
-          <OpenText data={data[currQuestion]} setAnswer={saveAnswer} answers={questionAnswers[currQuestion]} />
-        ) : null
+        data[currQuestion].type == 'matrix' && <Matrix {...data[currQuestion]} setAnswers={saveAnswer} startingQuestionAnswers={questionAnswers[currQuestion] || {}} />
+      }
+      {
+        data[currQuestion].type == 'multiple_choice' && <MultipleChoice data={data[currQuestion]} setAnswer={saveAnswer} answers={questionAnswers[currQuestion]} />
+      }
+      {
+        data[currQuestion].type == 'open_text' && <OpenText data={data[currQuestion]} setAnswer={saveAnswer} answers={questionAnswers[currQuestion]} />
       }
       <br />
       {currQuestion > 0 ? (
