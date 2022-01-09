@@ -3,21 +3,17 @@ import { Checkbox, Radio, Space } from 'antd'
 import { useState } from 'react'
 
 function MultipleChoice(props) {
-  const [answers, setAnswers] = useState({
-    questionID: props.data.id,
-    answer: [],
-  })
 
   const onChange = (key) => {
     if (key === 'radio') {
       return (event) => {
-        console.log('radio checked', event.target.value)
-        setAnswers({ ...answers, answer: [event.target.value] })
+        if (props.setAnswer)
+          props.setAnswer(event.target.value)
       }
     } else {
       return (event) => {
-        console.log('checked values = ', event)
-        setAnswers({ ...answers, answer: [event] })
+        if (props.setAnswer)
+          props.setAnswer(event)
       }
     }
   }
@@ -28,7 +24,7 @@ function MultipleChoice(props) {
       <div className={style.question}>{props.data.question}</div>
       <div className={style.choices}>
         {props.data.choice_type === 'Radio' ? (
-          <Radio.Group onChange={onChange('radio')}>
+          <Radio.Group onChange={onChange('radio')} value={props.answers}>
             <Space direction="vertical">
               {props.data.answers.map((answer, idx) => (
                 <Radio value={answer.text} key={idx}>
@@ -38,7 +34,7 @@ function MultipleChoice(props) {
             </Space>
           </Radio.Group>
         ) : (
-          <Checkbox.Group onChange={onChange('checkbox')}>
+          <Checkbox.Group onChange={onChange('checkbox')} value={props.answers}>
             <Space direction="vertical">
               {props.data.answers.map((answer, idx) => (
                 <Checkbox value={answer.text} key={idx}>
