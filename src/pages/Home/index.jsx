@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Availables from './Availables'
 import style from './style.module.css'
+import { Space } from 'antd'
+
 
 export default function AvailableSurveys() {
   const [available, setAvailable] = useState([
@@ -31,10 +33,12 @@ export default function AvailableSurveys() {
       </div>
       <h1 className={style.title}>Available Questionnaires</h1>
       <div className={style.quest}>
-        <div>{available.map((obj, i) => (
-          <Availables key={i} data={obj} />
-        ))}</div>
+        <Space direction='vertical' size="middle">
+          {available.map((obj, i) => (
+            <Availables key={i} data={obj} />
+          ))}
+        </Space >
       </div>
-    </div>
+    </div >
   )
 }

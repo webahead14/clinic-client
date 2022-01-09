@@ -1,6 +1,7 @@
 import style from './style.module.css'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
+import { FormattedMessage } from 'react-intl'
 
 // React Wavify
 import Wave from 'react-wavify'
@@ -40,11 +41,13 @@ function Login(props) {
         setError('Please Try Again')
       })
   }
+
   const [log, setLog] = useState(true)
+
   return (
     // titlehan
     <div className={style.background}>
-      <h1 className={style.title}>Login</h1>
+      <h1 className={style.title}><FormattedMessage id="loginTitle" /></h1>
       <div className={style.inputs}>
         {/* Id input */}
         {log ? (

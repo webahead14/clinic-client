@@ -1,44 +1,64 @@
 import './App.css'
-import { useEffect } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
-import axios from 'axios'
+import { useState, useEffect } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import translations from './translations'
+import { IntlProvider } from 'react-intl'
+import { Menu, Dropdown, Button, Typography, Space } from 'antd'
 
 import Login from './pages/Login'
 import Welcome from './pages/Welcome'
 import Survey from './pages/Survey'
 import Home from './pages/Home'
 import Completed from './pages/Completed'
+
+const { Text } = Typography
+
+const languagesAbbr = {
+  en: 'English',
+  he: 'עברית',
+  ar: 'العربية'
+}
+
 function App() {
-  const location = useLocation()
+  const [language, setLanguage] = useState(localStorage.getItem('lang') || 'en')
 
-  // Just an axios example
-  // useEffect(() => {
-  //   axios.get(url)
-  //     .then((res) => {
-  //       res.data <- no need to JSON.parse the response
-  //     })
-  //     .catch()
+  const menu = (
+    <Menu>
+      <Menu.Item key="1" onClick={() => setLanguage('en')}>
+        <Text>
+          English
+        </Text>
+      </Menu.Item>
+      <Menu.Item key="2" onClick={() => setLanguage('he')}>
+        <Text>עברית</Text>
+      </Menu.Item>
+      <Menu.Item key="3" onClick={() => setLanguage('ar')}>
+        <Text>العربية</Text>
+      </Menu.Item>
+    </Menu>
+  );
 
-  //   axios.post(url, { body: {} }) <- no need to JSON.stringify the body
-  //     .then((res) => {
-  //       res.data
-  //     })
-  //     .catch()
-  // }, [])
+  useEffect(() => {
+    localStorage.setItem('lang', language)
+  }, [language])
 
-  if (location.pathname === '/login') {
-    return <Login />
-  }
 
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<Welcome />} />
-        <Route path="/survey" element={<Survey />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/completed" element={<Completed />} />
-      </Routes>
-    </div>
+    <IntlProvider locale={language} messages={translations[language]}>
+      {/* only show this dropdown for login and home page */}
+      <Dropdown overlay={menu} placement="bottomCenter" className='changeLanguage'>
+        <Button>{languagesAbbr[language]}</Button>
+      </Dropdown>
+      <div>
+        <Routes>
+          <Route exact path="/" element={<Welcome />} />
+          <Route path="/survey" element={<Survey />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/completed" element={<Completed />} />
+        </Routes>
+      </div>
+    </IntlProvider>
   )
 }
 
