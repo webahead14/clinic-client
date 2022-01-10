@@ -23,10 +23,11 @@ function Login(props) {
       .post('http://localhost:4000/api/client/login', client)
       .then((res) => {
         window.localStorage.setItem('access_token', res.data.access_token)
+        showMessage(`Welcome ${res.data.name}`, 'success')
         goTo('/home')
       })
       .catch((err) => {
-        showMessage(err.response.message, 'error')
+        showMessage(err.response.data.message, 'error')
       })
   }
   function fetchPasscode(client) {
