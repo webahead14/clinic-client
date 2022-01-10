@@ -6,7 +6,7 @@ const en = {
   loginBtn: 'Log-in',
   loginGetPassocdeBtn: 'Get Passcode',
   loginGetPassocde: 'Get a temporary passcode',
-  loginGoToLogin: 'Go to login',
+  loginGoToLogin: 'Return to login',
 }
 
 export default en

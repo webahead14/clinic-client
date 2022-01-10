@@ -50,59 +50,43 @@ function Login(props) {
       </h1>
       <div className={style.inputs}>
         {/* Id input */}
-        {log ? (
-          <FormattedMessage id="loginPlaceholderID">
-            {(id) => (
+        <FormattedMessage id="loginPlaceholderID">
+          {(id) => (
+            <input
+              type="text"
+              className={style.idInput}
+              placeholder={id}
+              required
+              onChange={(e) => {
+                setClient({
+                  ...client,
+                  govId: e.target.value,
+                })
+              }}
+            />
+          )}
+        </FormattedMessage>
+
+        {/* Email input */}
+        {!log ? (
+          <FormattedMessage id="loginPlaceholderEmail">
+            {(email) => (
               <input
                 type="text"
                 className={style.idInput}
-                placeholder={id}
+                placeholder={email}
                 required
                 onChange={(e) => {
                   setClient({
                     ...client,
-                    govId: e.target.value,
+                    email: e.target.value,
                   })
                 }}
               />
             )}
           </FormattedMessage>
-        ) : (
-          <>
-            <FormattedMessage id="loginPlaceholderID">
-              {(id) => (
-                <input
-                  type="text"
-                  className={style.idInput}
-                  placeholder={id}
-                  required
-                  onChange={(e) => {
-                    setClient({
-                      ...client,
-                      govId: e.target.value,
-                    })
-                  }}
-                />
-              )}
-            </FormattedMessage>
-            <FormattedMessage id="loginPlaceholderEmail">
-              {(email) => (
-                <input
-                  type="text"
-                  className={style.idInput}
-                  placeholder={email}
-                  required
-                  onChange={(e) => {
-                    setClient({
-                      ...client,
-                      email: e.target.value,
-                    })
-                  }}
-                />
-              )}
-            </FormattedMessage>
-          </>
-        )}
+        ) : null}
+
         {/* password input */}
         {log ? (
           <FormattedMessage id="loginPlaceholderPassword">
@@ -121,7 +105,8 @@ function Login(props) {
         ) : null}
 
         <br />
-        {/* login button */}
+
+        {/* login button or getPasscode button*/}
         {log ? (
           <button
             className={style.loginButton}
@@ -142,7 +127,7 @@ function Login(props) {
           </button>
         )}
 
-        {/* login by email */}
+        {/* get passcode or return to login*/}
         {log ? (
           <p
             className={style.loginchanger}
