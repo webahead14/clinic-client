@@ -6,7 +6,7 @@ const en = {
   loginBtn: 'Log-in',
   loginGetPassocdeBtn: 'Get Passcode',
   loginGetPassocde: 'Get a temporary passcode',
-  loginGoToLogin: 'Go to login',
+  loginGoToLogin: 'Return to login',
   // welcome page
   WelcomeMassage: 'Hello!',
   Welcome1Massage: 'We’re glad to see you',
