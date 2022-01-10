@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router'
 import { FormattedMessage } from 'react-intl'
 import { showMessage } from '../../utils/functions'
 
-// React Wavify
+// React Wavify.
 import Wave from 'react-wavify'
 import axios from 'axios'
 
