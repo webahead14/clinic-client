@@ -7,6 +7,9 @@ const he = {
   loginGetPassocdeBtn: 'קבל קוד',
   loginGetPassocde: 'הזמת קוד זמני',
   loginGoToLogin: 'חזור לכניסה',
+  // welcome page
+  WelcomeMassage: 'שלום',
+  Welcome1Massage: 'אנו שמחים לראות אותך',
 }
 
 export default he
