@@ -8,6 +8,8 @@ import { showMessage } from '../../utils/functions'
 import Wave from 'react-wavify'
 import axios from 'axios'
 
+const { REACT_APP_API_URL } = process.env
+
 function Login(props) {
   const goTo = useNavigate()
 
@@ -20,19 +22,20 @@ function Login(props) {
 
   function fetchLogin(client) {
     axios
-      .post('http://localhost:4000/api/client/login', client)
+      .post(`${REACT_APP_API_URL}/api/client/login`, client)
       .then((res) => {
         window.localStorage.setItem('access_token', res.data.access_token)
         showMessage(`Welcome ${res.data.name}`, 'success')
         goTo('/home')
       })
       .catch((err) => {
+        console.error(err)
         showMessage(err.response.data.message, 'error')
       })
   }
   function fetchPasscode(client) {
     axios
-      .post('http://localhost:4000/api/client/getPasscode', client)
+      .post(`${REACT_APP_API_URL}/api/client/getPasscode`, client)
       .then((res) => {
         showMessage(res.data.response, 'success')
         setLog(true)
@@ -112,7 +115,7 @@ function Login(props) {
           <button
             className={style.loginButton}
             onClick={() => {
-              fetchLogin()
+              fetchLogin(client)
             }}
           >
             <FormattedMessage id="loginBtn" />
