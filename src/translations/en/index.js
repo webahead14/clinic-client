@@ -10,6 +10,9 @@ const en = {
   // welcome page
   WelcomeMassage: 'Hello!',
   Welcome1Massage: 'We’re glad to see you',
+  //comleted page
+  Thankyou: 'Your survey has been successfully submitted.',
+  Back: 'Back',
 }
 
 export default en
