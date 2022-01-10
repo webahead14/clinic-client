@@ -10,6 +10,9 @@ const ar = {
   // welcome page
   WelcomeMassage: 'اهلاً وسهلاً',
   Welcome1Massage: 'يسعدنا رؤيتك',
+  //comleted page
+  Thankyou: 'تم ارسال الاستبيان الخاص بك بنجاح',
+  Back: 'الرجوع',
 }
 
 export default ar

@@ -10,6 +10,9 @@ const he = {
   // welcome page
   WelcomeMassage: 'שלום',
   Welcome1Massage: 'אנו שמחים לראות אותך',
+  //comleted page
+  Thankyou: 'תודה על השתתפותכם בשאלון',
+  Back: 'חזור',
 }
 
 export default he
