@@ -2,6 +2,7 @@ import style from './style.module.css'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { FormattedMessage } from 'react-intl'
+import { showMessage } from '../../utils/functions'
 
 // React Wavify
 import Wave from 'react-wavify'
@@ -10,14 +11,14 @@ import axios from 'axios'
 function Login(props) {
   const goTo = useNavigate()
 
+  const [log, setLog] = useState(true)
   const [client, setClient] = useState({
-    gov_id: '',
+    govId: '',
     passcode: '',
     email: '',
   })
-  const [error, setError] = useState(false)
 
-  function fetchLogin() {
+  function fetchLogin(client) {
     axios
       .post('http://localhost:4000/api/client/login', client)
       .then((res) => {
@@ -25,68 +26,102 @@ function Login(props) {
         goTo('/home')
       })
       .catch((err) => {
-        console.log(err)
-        setError('Please Try Again')
+        showMessage(err.response.message, 'error')
       })
   }
-  function fetchLoginByEmail() {
+  function fetchPasscode(client) {
     axios
-      .post('http://localhost:4000/api/client/login', client)
+      .post('http://localhost:4000/api/client/getPasscode', client)
       .then((res) => {
-        window.localStorage.setItem('access_token', res.data.access_token)
-        goTo('/home')
+        showMessage(res.data.response, 'success')
+        setLog(true)
       })
       .catch((err) => {
-        console.log(err)
-        setError('Please Try Again')
+        console.error(err)
+        showMessage(err.response.data.message, 'error')
       })
   }
-
-  const [log, setLog] = useState(true)
 
   return (
     // titlehan
     <div className={style.background}>
-      <h1 className={style.title}><FormattedMessage id="loginTitle" /></h1>
+      <h1 className={style.title}>
+        <FormattedMessage id="loginTitle" />
+      </h1>
       <div className={style.inputs}>
         {/* Id input */}
         {log ? (
-          <input
-            type="text"
-            className={style.idInput}
-            placeholder="Id"
-            required
-            onChange={(e) => {
-              setClient({ ...client, gov_id: e.target.value, email: undefined })
-              setError(false)
-            }}
-          />
+          <FormattedMessage id="loginPlaceholderID">
+            {(id) => (
+              <input
+                type="text"
+                className={style.idInput}
+                placeholder={id}
+                required
+                onChange={(e) => {
+                  setClient({
+                    ...client,
+                    govId: e.target.value,
+                  })
+                }}
+              />
+            )}
+          </FormattedMessage>
         ) : (
-          <input
-            type="text"
-            className={style.idInput}
-            placeholder="Email"
-            required
-            onChange={(e) => {
-              setClient({ ...client, email: e.target.value, gov_id: undefined })
-              setError(false)
-            }}
-          />
+          <>
+            <FormattedMessage id="loginPlaceholderID">
+              {(id) => (
+                <input
+                  type="text"
+                  className={style.idInput}
+                  placeholder={id}
+                  required
+                  onChange={(e) => {
+                    setClient({
+                      ...client,
+                      govId: e.target.value,
+                    })
+                  }}
+                />
+              )}
+            </FormattedMessage>
+            <FormattedMessage id="loginPlaceholderEmail">
+              {(email) => (
+                <input
+                  type="text"
+                  className={style.idInput}
+                  placeholder={email}
+                  required
+                  onChange={(e) => {
+                    setClient({
+                      ...client,
+                      email: e.target.value,
+                    })
+                  }}
+                />
+              )}
+            </FormattedMessage>
+          </>
         )}
         {/* password input */}
         {log ? (
-          <input
-            type="password"
-            className={style.passcodeInput}
-            placeholder="Passcode"
-            required
-            onChange={(e) => setClient({ ...client, passcode: e.target.value })}
-          />
+          <FormattedMessage id="loginPlaceholderPassword">
+            {(password) => (
+              <input
+                type="password"
+                className={style.passcodeInput}
+                placeholder={password}
+                required
+                onChange={(e) =>
+                  setClient({ ...client, passcode: e.target.value })
+                }
+              />
+            )}
+          </FormattedMessage>
         ) : null}
 
         <br />
         {/* login button */}
-        {error && <div className={style.error}>{error}</div>}
         {log ? (
           <button
             className={style.loginButton}
@@ -94,17 +129,16 @@ function Login(props) {
               fetchLogin()
             }}
           >
-            Log-in
+            <FormattedMessage id="loginBtn" />
           </button>
         ) : (
           <button
             className={style.loginButton}
             onClick={() => {
-              fetchLoginByEmail()
-              goTo('/passcodeByEmail')
+              fetchPasscode(client)
             }}
           >
-            Send Passcode to Email
+            <FormattedMessage id="loginGetPassocdeBtn" />
           </button>
         )}
 
@@ -116,7 +150,7 @@ function Login(props) {
               setLog(false)
             }}
           >
-            Login By Email
+            <FormattedMessage id="loginGetPassocde" />
           </p>
         ) : (
           <p
@@ -125,7 +159,7 @@ function Login(props) {
               setLog(true)
             }}
           >
-            Login By Id
+            <FormattedMessage id="loginGoToLogin" />
           </p>
         )}
       </div>
