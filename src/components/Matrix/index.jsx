@@ -38,9 +38,9 @@ function Matrix({
   questions,
   answers,
   desktopMode,
-  setAnswers,
+  setAnswer,
   startingQuestionAnswers = {},
-  currQuestion = 0,
+  currMatrixQuestion = 0,
 }) {
   //  Answer storage (Mobile)
   const [questionAnswers, setQuestionAnswers] = React.useState(
@@ -56,9 +56,9 @@ function Matrix({
     answers,
   })
 
-  const saveAnswer = (answer) => {
-    setQuestionAnswers({ ...questionAnswers, [currQuestion]: answer })
-    setAnswers({ ...questionAnswers, [currQuestion]: answer })
+  const saveAnswer = (answer, questionId) => {
+    setQuestionAnswers({ ...questionAnswers, [currMatrixQuestion]: answer })
+    setAnswer(answer, questionId)
   }
 
   // Answer storage (Desktop)
@@ -163,9 +163,9 @@ function Matrix({
       <Paragraph>{title}</Paragraph>
 
       <MultipleChoice
-        data={multipleQuestionParsedMatrix.questions[currQuestion]}
+        data={multipleQuestionParsedMatrix.questions[currMatrixQuestion]}
         setAnswer={saveAnswer}
-        answers={questionAnswers[currQuestion]}
+        answers={questionAnswers[currMatrixQuestion]}
       />
       <br />
     </div>

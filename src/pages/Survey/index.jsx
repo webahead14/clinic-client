@@ -1,6 +1,6 @@
 import style from './style.module.css'
 import axios from 'axios'
-import React from 'react'
+import React, { useEffect } from 'react'
 import './style.css'
 import Matrix from '../../components/Matrix'
 import MultipleChoice from '../../components/MultipleChoice'
@@ -84,9 +84,15 @@ function Survey({ id = 1, ...props }) {
   }
 
   //sets the answer the patient gave
-  const saveAnswer = (answer) => {
-    setQuestionAnswers({ ...questionAnswers, [currQuestion]: answer })
+  const saveAnswer = (answer, questionId) => {
+    setQuestionAnswers({ ...questionAnswers, [questionId]: { answer, questionId } })
+
+    localStorage.setItem('surveyAnswers', JSON.stringify({
+      ...questionAnswers, [questionId]: { answer, questionId }
+    }))
   }
+
+
   //fetches survey id
   React.useEffect(() => {
     axios
@@ -128,9 +134,9 @@ function Survey({ id = 1, ...props }) {
       {data[currQuestion].type === 'matrix' && (
         <Matrix
           {...data[currQuestion]}
-          setAnswers={saveAnswer}
+          setAnswer={saveAnswer}
           startingQuestionAnswers={questionAnswers[currQuestion]}
-          currQuestion={currMatrixQuestion}
+          currMatrixQuestion={currMatrixQuestion}
         />
       )}
 
@@ -139,14 +145,14 @@ function Survey({ id = 1, ...props }) {
         <MultipleChoice
           data={data[currQuestion]}
           setAnswer={saveAnswer}
-          answers={questionAnswers[currQuestion]}
+          answers={questionAnswers[data[currQuestion].id]?.answer}
         />
       )}
       {data[currQuestion].type === 'open_text' && (
         <OpenText
           data={data[currQuestion]}
           setAnswer={saveAnswer}
-          answers={questionAnswers[currQuestion]}
+          answers={questionAnswers[data[currQuestion].id]?.answer}
         />
       )}
       <br />
