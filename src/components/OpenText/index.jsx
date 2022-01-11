@@ -12,8 +12,9 @@ function OpenText(props) {
   }
   return (
     <div className={style.openText}>
-      <br />
       <div className={style.question}>{props.data.question}</div>
+      <br />
+
       <TextArea
         onChange={onChange}
         rows={3}

@@ -1,19 +1,47 @@
-.matrixFrame{
-    width:50%;
-    height:50%;
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;400&display=swap');
+
+.matrixFrame {
+  width: 50%;
+  height: 50%;
 }
 
 .matrixTitleCell {
-    height:50px;
-    border: 1px solid black;
+  height: 100px;
+  border: 1px solid black;
 }
 
 .matrixCell {
-    text-align: start;
-    height:50px;
-    border: 1px solid black;
+  text-align: start;
+  height: 50px;
+  border: 1px solid black;
+  transform: scale(1.1);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.modalBtn {
+  position: fixed !important;
+  display: flex !important;
+  justify-content: center;
+  top: 8px;
+  left: 10px;
+  background-color: transparent !important;
+  border-radius: 15px !important;
+  width: 10px;
+  align-items: center;
+  line-height: 1px;
+  color: black !important;
+  font-family: Raleway, sans-serif;
+  font-weight: 900;
+  font-size: 20px !important;
+}
+
+.progressBar {
+  width: 170px;
+}
+
+/* .okInstructions ant-btn-primary {
+  transform: scale (1.1) !important;
+} */

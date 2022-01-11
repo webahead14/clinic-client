@@ -3,17 +3,14 @@ import { Checkbox, Radio, Space } from 'antd'
 import { useState } from 'react'
 
 function MultipleChoice(props) {
-
   const onChange = (key) => {
     if (key === 'radio') {
       return (event) => {
-        if (props.setAnswer)
-          props.setAnswer(event.target.value)
+        if (props.setAnswer) props.setAnswer(event.target.value)
       }
     } else {
       return (event) => {
-        if (props.setAnswer)
-          props.setAnswer(event)
+        if (props.setAnswer) props.setAnswer(event)
       }
     }
   }
@@ -21,6 +18,7 @@ function MultipleChoice(props) {
   return (
     <div className={style.multipleChoice}>
       <br />
+
       <div className={style.question}>{props.data.question}</div>
       <div className={style.choices}>
         {props.data.choice_type === 'Radio' ? (

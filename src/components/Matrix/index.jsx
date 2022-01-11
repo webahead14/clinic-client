@@ -1,6 +1,7 @@
-import { Typography, Row, Col, Radio } from 'antd'
+import { Typography, Row, Col, Radio, Modal, Button, Progress } from 'antd'
 import React from 'react'
-
+import { useState } from 'react'
+import './style.css'
 import style from './style.module.css'
 
 import MultipleChoice from '../MultipleChoice'
@@ -42,7 +43,9 @@ function Matrix({
   currQuestion = 0,
 }) {
   //  Answer storage (Mobile)
-  const [questionAnswers, setQuestionAnswers] = React.useState(startingQuestionAnswers)
+  const [questionAnswers, setQuestionAnswers] = React.useState(
+    startingQuestionAnswers
+  )
   //  Parsed data (Mobile)
   const multipleQuestionParsedMatrix = matrixDataParser({
     type: 'matrix',
@@ -73,12 +76,30 @@ function Matrix({
       return [...prev]
     })
   }
+
+  //these control the instructions button on the header
+  const [isModalVisible, setIsModalVisible] = useState(true)
+  const showModal = () => {
+    setIsModalVisible(true)
+  }
+  const handleOk = () => {
+    setIsModalVisible(false)
+  }
+
   // Component (Desktop)
   return desktopMode ? (
     <div className={style.matrixFrame}>
-      <Paragraph>
-        <b>Instructions:</b> {instructions}
-      </Paragraph>
+      <Button className={style.modalBtn} type="primary" onClick={showModal}>
+        <Modal
+          title="Instructions"
+          visible={isModalVisible}
+          footer={[
+            <Button className={style.okInstructions} onCLick={handleOk}>
+              Ok
+            </Button>,
+          ]}
+        ></Modal>
+      </Button>
       <Row gutter={[2, 2]} wrap={false}>
         <Col span={12} flex={'12'}>
           <div className={style.matrixTitleCell}>{title}</div>
@@ -104,7 +125,7 @@ function Matrix({
                   <div className={style.matrixCell}>
                     <Radio
                       style={{ margin: '0px 0px' }}
-                      checked={desktopValueArr[questionIndex] == answer}
+                      checked={desktopValueArr[questionIndex] === answer}
                       onChange={(e) => {
                         onChange(answer, questionIndex)
                       }}
@@ -122,13 +143,25 @@ function Matrix({
   ) : (
     //   Component (Mobile)
     <div>
-      <br />
-      <Paragraph>
-        <b>Instructions:</b> {instructions}
-      </Paragraph>
-      <br />
+      <Modal
+        title="Instructions"
+        closable={false}
+        visible={isModalVisible}
+        onOk={handleOk}
+        footer={[
+          <Button type="primary" key="back" onClick={handleOk}>
+            Ok
+          </Button>,
+        ]}
+      >
+        {instructions}
+      </Modal>
+      <Button className={style.modalBtn} type="primary" onClick={showModal}>
+        i
+      </Button>
+
       <Paragraph>{title}</Paragraph>
-      <br />
+
       <MultipleChoice
         data={multipleQuestionParsedMatrix.questions[currQuestion]}
         setAnswer={saveAnswer}

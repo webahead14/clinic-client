@@ -1,0 +1,23 @@
+.ant-modal {
+  visibility: visible !important;
+}
+
+.ant-modal-close {
+  visibility: hidden;
+}
+
+.ant-btn:nth-child(0) {
+  visibility: hidden;
+}
+
+.ant-modal-body {
+  font-size: 20px !important;
+}
+
+.ant-modal-title {
+  font-size: 25px !important;
+}
+
+/* .ant-btn: instructionsBtn {
+  transform: scale(1.1) !important;
+} */
