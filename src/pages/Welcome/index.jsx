@@ -1,19 +1,26 @@
 import style from './style.module.css'
+import { FormattedMessage } from 'react-intl'
 // React Wavify
 import Wave from 'react-wavify'
-// star
 
 function Welcome(props) {
   return (
     <div>
       <div className={style.title_p}>
-        <h1 className={style.title}>Hello!</h1>
-        <p className={style.par}>We’re glad to see you</p>
+        <h1 className={style.title}>
+          <FormattedMessage id="WelcomeMassage" />
+        </h1>
+        <p className={style.par}>
+          <FormattedMessage id="Welcome1Massage" />
+        </p>
       </div>
       <div className={style.buttons}>
         {/* redirct to login page */}
         <form action="/login" className={style.center}>
-          <button className={style.loginButton}>Log-in</button>
+          <button className={style.loginButton}>
+            {' '}
+            <FormattedMessage id="loginTitle" />
+          </button>
         </form>
       </div>
       {/* React Wavify */}

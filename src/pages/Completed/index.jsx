@@ -1,6 +1,6 @@
 import style from './style.module.css'
 import React from 'react'
-
+import { FormattedMessage } from 'react-intl'
 // React Wavify
 import Wave from 'react-wavify'
 import Check from './check.png'
@@ -10,15 +10,19 @@ function Completed(props) {
     <div>
       <br />
       <br />
-      <img src={Check} alt="check" width="100px" />
+      <img src={Check} alt="check" width="100px" className={style.check} />
+      <br />
+      <br />
       <p className={style.title}>
-        Your survey has been successfully submitted.
+        <FormattedMessage id="Thankyou" />
       </p>
       <br />
-      <p className={style.title}>Thank you for your time.</p>
+      <br />
       {/* redirct to home page */}
       <form action="/home" className={style.center}>
-        <button className={style.back}>Back</button>
+        <button className={style.back}>
+          <FormattedMessage id="Back" />
+        </button>
       </form>
       {/* React Wavify */}
       <Wave

@@ -1,7 +1,31 @@
+import React, { useState } from 'react'
+import Availables from './Availables'
 import style from './style.module.css'
-import React, { useState, useEffect } from 'react'
+import { Space } from 'antd'
 
-function Home(props) {
+
+export default function AvailableSurveys() {
+  const [available, setAvailable] = useState([
+    {
+      id: 1,
+      surveyName: 'PCL-5',
+      lastDate: '01-06',
+      lastTime: '00:00',
+    },
+    {
+      id: 2,
+      surveyName: 'GAD',
+      lastDate: '01-06',
+      lastTime: '00:00',
+    },
+    {
+      id: 3,
+      surveyName: 'PHQ',
+      lastDate: '01-06',
+      lastTime: '00:00',
+    },
+  ])
+
   return (
     <div>
       <div className={style.logo}>
@@ -9,25 +33,12 @@ function Home(props) {
       </div>
       <h1 className={style.title}>Available Questionnaires</h1>
       <div className={style.quest}>
-        <div className={style.firstone}>
-          <p>phq</p>
-          <p>Week 1, Thursday 13:00</p>
-        </div>
-        <div className={style.firstone}>
-          <p>phq</p>
-          <p>Week 1, Thursday 13:00</p>
-        </div>
-        <div className={style.firstone}>
-          <p>phq</p>
-          <p>Week 1, Thursday 13:00</p>
-        </div>
-        <div className={style.firstone}>
-          <p>phq</p>
-          <p>Week 1, Thursday 13:00</p>
-        </div>
+        <Space direction='vertical' size="middle">
+          {available.map((obj, i) => (
+            <Availables key={i} data={obj} />
+          ))}
+        </Space >
       </div>
-    </div>
+    </div >
   )
 }
-
-export default Home
