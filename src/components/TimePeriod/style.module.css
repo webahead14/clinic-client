@@ -1,0 +1,9 @@
+.timeQuestion {
+  margin-top: 10px;
+  display: flex;
+  font-size: 17px;
+}
+
+.time {
+  margin-left: 10px;
+}
