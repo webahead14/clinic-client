@@ -16,7 +16,7 @@ const { Text } = Typography
 const languagesAbbr = {
   en: 'English',
   he: 'עברית',
-  ar: 'العربية'
+  ar: 'العربية',
 }
 
 function App() {
@@ -25,9 +25,7 @@ function App() {
   const menu = (
     <Menu>
       <Menu.Item key="1" onClick={() => setLanguage('en')}>
-        <Text>
-          English
-        </Text>
+        <Text>English</Text>
       </Menu.Item>
       <Menu.Item key="2" onClick={() => setLanguage('he')}>
         <Text>עברית</Text>
@@ -36,28 +34,30 @@ function App() {
         <Text>العربية</Text>
       </Menu.Item>
     </Menu>
-  );
+  )
 
   useEffect(() => {
     localStorage.setItem('lang', language)
   }, [language])
 
-
   return (
     <IntlProvider locale={language} messages={translations[language]}>
       {/* only show this dropdown for login and home page */}
-      <Dropdown overlay={menu} placement="bottomCenter" className='changeLanguage'>
+      <Dropdown
+        overlay={menu}
+        placement="bottomCenter"
+        className="changeLanguage"
+      >
         <Button>{languagesAbbr[language]}</Button>
       </Dropdown>
-      <div>
-        <Routes>
-          <Route exact path="/" element={<Welcome />} />
-          <Route path="/survey" element={<Survey />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/completed" element={<Completed />} />
-        </Routes>
-      </div>
+
+      <Routes>
+        <Route exact path="/" element={<Welcome />} />
+        <Route path="/survey" element={<Survey />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/completed" element={<Completed />} />
+      </Routes>
     </IntlProvider>
   )
 }

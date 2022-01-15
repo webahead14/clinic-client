@@ -1,0 +1,12 @@
+.toggle {
+  display: flex;
+  flex-direction: row;
+  margin-left: 30px;
+  margin-top: 50px;
+}
+
+.toggleQ {
+  width: 359px;
+  /* display: flex;
+  flex-wrap: wrap; */
+}
