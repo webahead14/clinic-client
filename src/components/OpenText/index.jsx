@@ -8,12 +8,13 @@ function OpenText(props) {
   const [input, setInput] = useState('')
   const onChange = (e) => {
     setInput(e.target.value)
-    props.setAnswer(e.target.value)
+    props.setAnswer(e.target.value, props.data.id)
   }
   return (
     <div className={style.openText}>
-      <br />
       <div className={style.question}>{props.data.question}</div>
+      <br />
+
       <TextArea
         onChange={onChange}
         rows={3}

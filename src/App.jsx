@@ -50,7 +50,6 @@ function App() {
       >
         <Button>{languagesAbbr[language]}</Button>
       </Dropdown>
-      <div>
         <Routes>
           <Route exact path="/" element={<Welcome />} />
           <Route path="/survey/:id" element={<Survey />} />
@@ -58,7 +57,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/completed" element={<Completed />} />
         </Routes>
-      </div>
     </IntlProvider>
   )
 }
