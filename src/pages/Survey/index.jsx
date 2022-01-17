@@ -6,16 +6,18 @@ import Matrix from '../../components/Matrix'
 import MultipleChoice from '../../components/MultipleChoice'
 import OpenText from '../../components/OpenText'
 import { Button } from 'antd'
+import { useParams } from 'react-router-dom'
 
 const { REACT_APP_API_URL } = process.env
 
-function Survey({ id = 1, ...props }) {
+function Survey({ ...props }) {
   const [data, setData] = React.useState([])
   const [currQuestion, setCurrQuestion] = React.useState(0)
   const [questionAnswers, setQuestionAnswers] = React.useState({})
   const [currMatrixQuestion, setCurrMatrixQuestion] = React.useState(0)
   const [totalQuestions, setTotalQuestions] = React.useState(0)
   const [currQuestionFromTotal, setCurrQuestionFromTotal] = React.useState(0)
+  const params = useParams()
 
   const nextQuestion = () => {
     if (
@@ -53,10 +55,10 @@ function Survey({ id = 1, ...props }) {
 
   React.useEffect(() => {
     axios
-      .get(REACT_APP_API_URL + '/api/client/survey/' + id)
+      .get(REACT_APP_API_URL + '/api/client/survey/' + params.id)
       .then((data) => data.data)
       .then(setData)
-  }, [id])
+  }, [params.id])
 
   React.useEffect(() => {
     setTotalQuestions(
