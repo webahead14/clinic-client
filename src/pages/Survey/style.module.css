@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;400&display=swap');
 body {
-  background-color: #cee1f3 !important;
+  /* background-color: #cee1f3 !important; */
   /* height: 400px !important; */
-  overflow: auto !important;
+  overflow: hidden !important;
+}
+
+.surveyBackground {
+  background-color: #cee1f3 !important;
+  /* overflow: hidden !important; */
 }
 
 .survey {
@@ -11,11 +16,13 @@ body {
   margin-right: 10px;
   text-align: left;
   font-size: 20px;
+  height: 815px;
   font-family: Raleway, sans-serif;
+  background-color: #cee1f3 !important;
 }
 
 .header {
-  background-color: #cee1f3;
+  background-color: #cee1f3 !important;
   width: 100%;
   height: 40px;
   display: flex;

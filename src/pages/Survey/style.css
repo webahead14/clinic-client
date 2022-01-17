@@ -4,31 +4,30 @@
   display: flex;
   justify-content: center;
   background-color: white;
-  height: 60px;
-  padding: 10px;
+  height: 44px;
+  padding: 7px;
   align-items: center;
   font-family: Raleway, sans-serif;
   font-weight: 900;
-  font-size: 22px;
+  font-size: 18px;
 
   border-radius: 10px;
 }
 
 .ant-space,
 .ant-space-vertical {
-  gap: 40px !important;
+  gap: 26px !important;
   transform: scale(1.5);
-  margin-top: 80px;
+  margin-top: 63px;
   margin-left: 50px;
 }
 
 .ant-btn-secondary {
-  margin-top: 10px;
   display: flex !important;
   justify-content: center;
   color: rgb(0, 0, 0) !important;
   background-color: rgb(141, 191, 206) !important;
   border: 1px solid rgb(85, 84, 84) !important;
-  margin: 0 auto;
+  margin: -20px auto;
   transform: scale(1.8) !important;
 }
