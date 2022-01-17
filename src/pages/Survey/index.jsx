@@ -86,13 +86,19 @@ function Survey({ ...props }) {
 
   //sets the answer the patient gave
   const saveAnswer = (answer, questionId) => {
-    setQuestionAnswers({ ...questionAnswers, [questionId]: { answer, questionId } })
+    setQuestionAnswers({
+      ...questionAnswers,
+      [questionId]: { answer, questionId },
+    })
 
-    localStorage.setItem('surveyAnswers', JSON.stringify({
-      ...questionAnswers, [questionId]: { answer, questionId }
-    }))
+    localStorage.setItem(
+      'surveyAnswers',
+      JSON.stringify({
+        ...questionAnswers,
+        [questionId]: { answer, questionId },
+      })
+    )
   }
-
 
   //fetches survey id
   React.useEffect(() => {
@@ -119,63 +125,63 @@ function Survey({ ...props }) {
   }
 
   return (
-    <div className={style.survey}>
-      <div className={style.header}>
-        <img src={logo} alt="GrayMatters HealthLogo" width="50px" />
-        {/* Progress bar, rounded up the number of questions over the overallQuestions *100 to get a percentage */}
-        <Progress
-          className={style.progressBar}
-          percent={Math.floor((questionNum / overallQuestionsNum) * 100)}
-          status="active"
-        />
+    <body className={style.surveyBackground}>
+      <div className={style.survey}>
+        <div className={style.header}>
+          <img src={logo} alt="GrayMatters HealthLogo" width="50px" />
+          {/* Progress bar, rounded up the number of questions over the overallQuestions *100 to get a percentage */}
+          <Progress
+            className={style.progressBar}
+            percent={Math.floor((questionNum / overallQuestionsNum) * 100)}
+            status="active"
+          />
+        </div>
+        <hr />
+        <br />
+        {/* if the current question is a matrix question, display the matrix question, the survey question, setAnswer function */}
+        {data[currQuestion].type === 'matrix' && (
+          <Matrix
+            {...data[currQuestion]}
+            setAnswer={saveAnswer}
+            startingQuestionAnswers={questionAnswers[currQuestion]}
+            currMatrixQuestion={currMatrixQuestion}
+          />
+        )}
+        {/* if the current question is a multiple choice(radio/checkbox)/open text question, display the survey question, setAnswer function, and save current question data */}
+        {data[currQuestion].type === 'multiple_choice' && (
+          <MultipleChoice
+            data={data[currQuestion]}
+            setAnswer={saveAnswer}
+            answers={questionAnswers[data[currQuestion].id]?.answer}
+          />
+        )}
+        {data[currQuestion].type === 'open_text' && (
+          <OpenText
+            data={data[currQuestion]}
+            setAnswer={saveAnswer}
+            answers={questionAnswers[data[currQuestion].id]?.answer}
+          />
+        )}
+        <br />
+        {/*if the current question is more than 0 (1st question), then display the previous button  */}
+        {currQuestionFromTotal > 0 ? (
+          <Button className={style.prevQ} type="primary" onClick={prevQuestion}>
+            Previous
+          </Button>
+        ) : null}
+        {/*if the current question is less the length of the number of questions, then display the next button  */}
+        {totalQuestions - 1 > currQuestionFromTotal ? (
+          <Button className={style.nextQ} type="primary" onClick={nextQuestion}>
+            Next
+          </Button>
+        ) : null}
+        <br />
+        {/* if the current question is the last, then display the submit button */}
+        {totalQuestions - 1 === currQuestionFromTotal ? (
+          <Button type="secondary">Submit</Button>
+        ) : null}
       </div>
-      <hr />
-      <br />
-      {/* if the current question is a matrix question, display the matrix question, the survey question, setAnswer function */}
-      {data[currQuestion].type === 'matrix' && (
-        <Matrix
-          {...data[currQuestion]}
-          setAnswer={saveAnswer}
-          startingQuestionAnswers={questionAnswers[currQuestion]}
-          currMatrixQuestion={currMatrixQuestion}
-        />
-      )}
-
-      {/* if the current question is a multiple choice(radio/checkbox)/open text question, display the survey question, setAnswer function, and save current question data */}
-      {data[currQuestion].type === 'multiple_choice' && (
-        <MultipleChoice
-          data={data[currQuestion]}
-          setAnswer={saveAnswer}
-          answers={questionAnswers[data[currQuestion].id]?.answer}
-        />
-      )}
-      {data[currQuestion].type === 'open_text' && (
-        <OpenText
-          data={data[currQuestion]}
-          setAnswer={saveAnswer}
-          answers={questionAnswers[data[currQuestion].id]?.answer}
-        />
-      )}
-      <br />
-      {/*if the current question is more than 0 (1st question), then display the previous button  */}
-      {currQuestionFromTotal > 0 ? (
-        <Button className={style.prevQ} type="primary" onClick={prevQuestion}>
-          Previous
-        </Button>
-      ) : null}
-
-      {/*if the current question is less the length of the number of questions, then display the next button  */}
-      {totalQuestions - 1 > currQuestionFromTotal ? (
-        <Button className={style.nextQ} type="primary" onClick={nextQuestion}>
-          Next
-        </Button>
-      ) : null}
-      <br />
-      {/*if the current question is the last, then display the submit button  */}
-      {totalQuestions - 1 === currQuestionFromTotal ? (
-        <Button type="secondary">Submit</Button>
-      ) : null}
-    </div>
+    </body>
   )
 }
 
