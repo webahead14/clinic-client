@@ -103,9 +103,10 @@ function Survey({ ...props }) {
 
   //fetches survey id
   useEffect(() => {
-    const lang = { language: props.language }
     axios
-      .post(REACT_APP_API_URL + '/api/client/survey/' + params.id, lang)
+      .post(REACT_APP_API_URL + '/api/client/survey/' + params.id, {
+        lang: props.language,
+      })
       .then((data) => data.data)
       .then(setData)
     //took out the id because it makes the code render multiple times on save, thinking it has multiple surveys
