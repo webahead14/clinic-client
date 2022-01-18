@@ -22,6 +22,7 @@ function Survey({ ...props }) {
   const [currQuestionFromTotal, setCurrQuestionFromTotal] = React.useState(0)
   const [overallQuestionsNum, setOverallQuestionsNum] = React.useState(0)
   const [questionNum, setQuestionNum] = React.useState(1)
+  const [translate, setTranslate] = useState(0)
   const params = useParams()
 
   function calculateSurveyQuestions() {
@@ -103,12 +104,14 @@ function Survey({ ...props }) {
   //fetches survey id
   React.useEffect(() => {
     axios
-      .post(REACT_APP_API_URL + '/api/client/survey/' + params.id)
+      .post(REACT_APP_API_URL + '/api/client/survey/' + params.id, {
+        lang: props.language,
+      })
       .then((data) => data.data)
       .then(setData)
     //took out the id because it makes the code render multiple times on save, thinking it has multiple surveys
     //but I'm thinking it's not the case now, because either way it's rerendering on save
-  }, [params.id])
+  }, [params.id, props.language])
 
   //
   React.useEffect(() => {

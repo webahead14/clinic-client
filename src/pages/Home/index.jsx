@@ -12,6 +12,7 @@ export default function AvailableSurveys() {
   useEffect(() => {
     axios.get(`${REACT_APP_API_URL}/api/client/surveys/1`).then((response) => {
       setAvailable(response.data)
+      console.log(response.data)
     })
   }, [])
 
