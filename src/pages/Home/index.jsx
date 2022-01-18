@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Availables from './Availables'
 import style from './style.module.css'
-import { Space } from 'antd'
+import logo from './logo.png'
 import axios from 'axios'
 
 const { REACT_APP_API_URL } = process.env
@@ -18,15 +18,13 @@ export default function AvailableSurveys() {
   return (
     <div>
       <div className={style.logo}>
-        <p>Company Logo</p>
+        <img src={logo} alt="" />
       </div>
-      <h1 className={style.title}>Available Questionnaires</h1>
-      <div className={style.quest}>
-        <Space direction="vertical" size="middle">
-          {available.map((obj, i) => (
-            <Availables key={i} data={obj} />
-          ))}
-        </Space>
+      <div className={style.homeVerticalList}>
+        <h2 className={style.title}>Available Questionnaires</h2>
+        {available.map((obj, i) => (
+          <Availables key={i} data={obj} />
+        ))}
       </div>
     </div>
   )

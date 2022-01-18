@@ -1,11 +1,7 @@
 body {
   background-color: #ebf5fd;
 }
-.title {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-}
+
 .logo {
   display: flex;
   align-items: center;
@@ -14,20 +10,18 @@ body {
   width: 100%;
   background-color: #cee1f3;
 }
-.quest {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.firstone {
-  background-color: #dad8d8;
-  height: 100px;
-  width: 342px;
-  border-radius: 10px;
-  margin: 10px 0 0 0;
+
+.logo img {
+  height: 60px;
+  margin: auto;
 }
 
-ul {
-  list-style-type: none;
+.homeVerticalList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 80vw;
+  height: 65vh;
+  margin: auto;
+  margin-top: 40px;
 }
