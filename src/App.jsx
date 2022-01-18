@@ -50,13 +50,13 @@ function App() {
       >
         <Button>{languagesAbbr[language]}</Button>
       </Dropdown>
-        <Routes>
-          <Route exact path="/" element={<Welcome />} />
-          <Route path="/survey/:id" element={<Survey />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/completed" element={<Completed />} />
-        </Routes>
+      <Routes>
+        <Route exact path="/" element={<Welcome />} />
+        <Route path="/survey/:id" element={<Survey language={language} />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/completed" element={<Completed />} />
+      </Routes>
     </IntlProvider>
   )
 }

@@ -1,6 +1,6 @@
 import style from './style.module.css'
 import axios from 'axios'
-import React, { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import './style.css'
 import Matrix from '../../components/Matrix'
 import MultipleChoice from '../../components/MultipleChoice'
@@ -8,20 +8,21 @@ import OpenText from '../../components/OpenText'
 import { Button, Progress } from 'antd'
 import 'antd/dist/antd.css'
 import { useParams } from 'react-router-dom'
-import { useState } from 'react'
 import logo from './logowide.png'
 
 const { REACT_APP_API_URL } = process.env
 
 function Survey({ ...props }) {
-  const [data, setData] = React.useState([])
-  const [currQuestion, setCurrQuestion] = React.useState(0)
-  const [questionAnswers, setQuestionAnswers] = React.useState({})
-  const [currMatrixQuestion, setCurrMatrixQuestion] = React.useState(0)
-  const [totalQuestions, setTotalQuestions] = React.useState(0)
-  const [currQuestionFromTotal, setCurrQuestionFromTotal] = React.useState(0)
-  const [overallQuestionsNum, setOverallQuestionsNum] = React.useState(0)
-  const [questionNum, setQuestionNum] = React.useState(1)
+  const [data, setData] = useState([])
+  const [allData, setAllData] = useState([])
+  const [currQuestion, setCurrQuestion] = useState(0)
+  const [questionAnswers, setQuestionAnswers] = useState({})
+  const [currMatrixQuestion, setCurrMatrixQuestion] = useState(0)
+  const [totalQuestions, setTotalQuestions] = useState(0)
+  const [currQuestionFromTotal, setCurrQuestionFromTotal] = useState(0)
+  const [overallQuestionsNum, setOverallQuestionsNum] = useState(0)
+  const [questionNum, setQuestionNum] = useState(1)
+  const [translate, setTranslate] = useState(0)
   const params = useParams()
 
   function calculateSurveyQuestions() {
@@ -38,7 +39,7 @@ function Survey({ ...props }) {
   }
 
   //makes sure the data exists before calling the function
-  React.useEffect(() => {
+  useEffect(() => {
     if (data) {
       calculateSurveyQuestions()
     }
@@ -101,17 +102,19 @@ function Survey({ ...props }) {
   }
 
   //fetches survey id
-  React.useEffect(() => {
+  useEffect(() => {
     axios
-      .get(REACT_APP_API_URL + '/api/client/survey/' + params.id)
+      .post(REACT_APP_API_URL + '/api/client/survey/' + params.id, {
+        lang: props.language,
+      })
       .then((data) => data.data)
       .then(setData)
     //took out the id because it makes the code render multiple times on save, thinking it has multiple surveys
     //but I'm thinking it's not the case now, because either way it's rerendering on save
-  }, [params.id])
+  }, [params.id, props.language])
 
   //
-  React.useEffect(() => {
+  useEffect(() => {
     setTotalQuestions(
       data.reduce(
         (prev, question) =>
