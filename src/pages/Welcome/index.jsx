@@ -2,11 +2,14 @@ import style from './style.module.css'
 import { FormattedMessage } from 'react-intl'
 // React Wavify
 import Wave from 'react-wavify'
-
+import logo from './logowide.png'
 function Welcome(props) {
   return (
     <div>
       <div className={style.title_p}>
+        <div className="logo">
+          <img src={logo} alt="GrayMatters HealthLogo" width="50px" />
+        </div>
         <h1 className={style.title}>
           <FormattedMessage id="WelcomeMassage" />
         </h1>

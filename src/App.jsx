@@ -43,6 +43,7 @@ function App() {
   return (
     <IntlProvider locale={language} messages={translations[language]}>
       {/* only show this dropdown for login and home page */}
+
       <Dropdown
         overlay={menu}
         placement="bottomCenter"

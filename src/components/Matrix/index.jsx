@@ -78,7 +78,7 @@ function Matrix({
   }
 
   //these control the instructions button on the header
-  const [isModalVisible, setIsModalVisible] = useState(true)
+  const [isModalVisible, setIsModalVisible] = useState(false)
   const showModal = () => {
     setIsModalVisible(true)
   }

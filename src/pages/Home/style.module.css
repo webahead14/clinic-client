@@ -18,7 +18,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  margin-left: 48px;
 }
 .firstone {
   background-color: #dad8d8;

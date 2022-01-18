@@ -17,9 +17,6 @@ export default function AvailableSurveys() {
 
   return (
     <div>
-      <div className={style.logo}>
-        <p>Company Logo</p>
-      </div>
       <h1 className={style.title}>Available Questionnaires</h1>
       <div className={style.quest}>
         <Space direction="vertical" size="middle">

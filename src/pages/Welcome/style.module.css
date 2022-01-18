@@ -56,3 +56,9 @@ body {
   border: 0;
   cursor: pointer;
 }
+
+.logo {
+  position: absolute;
+  top: 0;
+  left: 10px;
+}
