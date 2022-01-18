@@ -19,7 +19,7 @@ body {
 .homeVerticalList {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   max-width: 80vw;
   height: 65vh;
   margin: auto;
