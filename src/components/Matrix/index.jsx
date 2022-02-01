@@ -4,7 +4,7 @@ import { useState } from 'react'
 import './style.css'
 import style from './style.module.css'
 
-import MultipleChoice from '../MultipleChoice'
+import RadioButttonsQuestion from '../RadioButttonsQuestion'
 
 const { Paragraph } = Typography
 
@@ -161,8 +161,9 @@ function Matrix({
       </Button>
 
       <Paragraph>{title}</Paragraph>
+      <br />
 
-      <MultipleChoice
+      <RadioButttonsQuestion
         data={multipleQuestionParsedMatrix.questions[currMatrixQuestion]}
         setAnswer={saveAnswer}
         answers={questionAnswers[currMatrixQuestion]}

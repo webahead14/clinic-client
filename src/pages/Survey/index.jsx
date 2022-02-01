@@ -1,9 +1,10 @@
 import style from './style.module.css'
 import axios from 'axios'
-import React, { useEffect } from 'react'
+import React from 'react'
 import './style.css'
 import Matrix from '../../components/Matrix'
-import MultipleChoice from '../../components/MultipleChoice'
+import RadioButttonsQuestion from '../../components/RadioButttonsQuestion'
+import CheckboxButttonsQuestion from '../../components/CheckboxButttonsQuestion'
 import OpenText from '../../components/OpenText'
 import { Button, Progress } from 'antd'
 import 'antd/dist/antd.css'
@@ -127,6 +128,12 @@ function Survey({ ...props }) {
     return 'Loading...'
   }
 
+  const commonQuestionProps = {
+    data: data[currQuestion],
+    setAnswer: saveAnswer,
+    answers: questionAnswers[data[currQuestion].id]?.answer,
+  }
+
   return (
     <body className={style.surveyBackground}>
       <div className={style.survey}>
@@ -150,20 +157,18 @@ function Survey({ ...props }) {
             currMatrixQuestion={currMatrixQuestion}
           />
         )}
-        {/* if the current question is a multiple choice(radio/checkbox)/open text question, display the survey question, setAnswer function, and save current question data */}
-        {data[currQuestion].type === 'multiple_choice' && (
-          <MultipleChoice
-            data={data[currQuestion]}
-            setAnswer={saveAnswer}
-            answers={questionAnswers[data[currQuestion].id]?.answer}
-          />
+        {/* if the current question is a radio multiple choice question, display the survey question, setAnswer function, and save current question data */}
+        {data[currQuestion].type === 'multiple_choice' && data[currQuestion].choiceType === 'Radio' && (
+          <RadioButttonsQuestion {...commonQuestionProps} />
+        )}
+        {data[currQuestion].type === 'multiple_choice' && data[currQuestion].choiceType === 'Checkbox' && (
+          <>
+            <br />
+            <CheckboxButttonsQuestion {...commonQuestionProps} />
+          </>
         )}
         {data[currQuestion].type === 'open_text' && (
-          <OpenText
-            data={data[currQuestion]}
-            setAnswer={saveAnswer}
-            answers={questionAnswers[data[currQuestion].id]?.answer}
-          />
+          <OpenText {...commonQuestionProps} />
         )}
         <br />
         {/*if the current question is more than 0 (1st question), then display the previous button  */}
@@ -180,9 +185,7 @@ function Survey({ ...props }) {
         ) : null}
         <br />
         {/* if the current question is the last, then display the submit button */}
-        {totalQuestions - 1 === currQuestionFromTotal ? (
-          <Button type="secondary">Submit</Button>
-        ) : null}
+        {totalQuestions - 1 === currQuestionFromTotal ? <Button type="secondary">Submit</Button> : null}
       </div>
     </body>
   )

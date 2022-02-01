@@ -1,6 +1,5 @@
 import style from './style.module.css'
 import { Checkbox, Radio, Space } from 'antd'
-import { useState } from 'react'
 
 function MultipleChoice(props) {
   const onChange = (key) => {
@@ -17,7 +16,6 @@ function MultipleChoice(props) {
 
   return (
     <div className={style.multipleChoice}>
-      <br />
 
       <div className={style.question}>{props.data.question}</div>
       <div className={style.choices}>

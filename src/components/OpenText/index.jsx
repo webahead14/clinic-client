@@ -1,5 +1,5 @@
 import style from './style.module.css'
-import { Input } from 'antd'
+import { Input, Button } from 'antd'
 import { useState } from 'react'
 
 function OpenText(props) {
@@ -13,14 +13,15 @@ function OpenText(props) {
   return (
     <div className={style.openText}>
       <div className={style.question}>{props.data.question}</div>
-      <br />
-
       <TextArea
         onChange={onChange}
         rows={3}
         placeholder={props.data.placeholder}
         value={props.answers}
       />
+      <Button type='link' style={{ marginLeft: 'auto', display: 'flex', fontSize: '20px' }}>
+        Clear
+      </Button>
     </div>
   )
 }
