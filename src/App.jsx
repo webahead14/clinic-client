@@ -11,6 +11,13 @@ import Survey from './pages/Survey'
 import Home from './pages/Home'
 import Completed from './pages/Completed'
 
+// Test components
+import OpenText from './components/OpenText'
+import RadioButttonsQuestion from './components/RadioButttonsQuestion'
+import CheckboxButttonsQuestion from './components/CheckboxButttonsQuestion'
+import SurveyWrapper from './components/SurveyWrapper'
+
+
 const { Text } = Typography
 
 const languagesAbbr = {
@@ -57,6 +64,19 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/completed" element={<Completed />} />
+        <Route
+          path="/survey/test/text-question"
+          element={<SurveyWrapper><OpenText /></SurveyWrapper>}
+        />
+        <Route
+          path="/survey/test/radio-question"
+          element={<SurveyWrapper><RadioButttonsQuestion /></SurveyWrapper>}
+        />
+        <Route
+          path="/survey/test/checkbox-question"
+          element={<SurveyWrapper><CheckboxButttonsQuestion /></SurveyWrapper>}
+        />
+
       </Routes>
     </IntlProvider>
   )
