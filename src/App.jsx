@@ -15,6 +15,7 @@ import Completed from './pages/Completed'
 import OpenText from './components/OpenText'
 import RadioButttonsQuestion from './components/RadioButttonsQuestion'
 import CheckboxButttonsQuestion from './components/CheckboxButttonsQuestion'
+import Scale from './components/Scale'
 import SurveyWrapper from './components/SurveyWrapper'
 
 
@@ -75,6 +76,11 @@ function App() {
         <Route
           path="/survey/test/checkbox-question"
           element={<SurveyWrapper><CheckboxButttonsQuestion /></SurveyWrapper>}
+        />
+
+        <Route
+          path="/survey/test/scale-question"
+          element={<SurveyWrapper><Scale /></SurveyWrapper>}
         />
 
       </Routes>
