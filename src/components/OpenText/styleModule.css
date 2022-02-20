@@ -1,0 +1,8 @@
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5vh;
+  margin: 5px;
+}
+
