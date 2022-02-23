@@ -1,11 +1,10 @@
 import { render } from '@testing-library/react'
 import React, { Component } from 'react'
-import { Button, Input } from 'antd'
+import { Button } from 'antd'
 import TextArea from 'antd/lib/input/TextArea'
 import './styleModule.css'
 import 'antd/dist/antd.css'
 import Form from 'antd/lib/form/Form'
-
 
 class Question extends Component {
   constructor(props) {
@@ -27,7 +26,7 @@ class Question extends Component {
   render() {
     return (
       <Form>
-        <label>{this.state.questionText}</label>
+        <span className="labeled">{this.state.questionText}</span>
         <TextArea
           rows={4}
           placeholder="Please write the answer here"
@@ -35,9 +34,9 @@ class Question extends Component {
           onChange={this.handleAnswer}
           onSubmit={this.submitAnswer}
         />
-        <div className='transparent'>
+        <div className="transparent">
           <Button
-            className='transparent'
+            className="transparent"
             onClick={() => this.setState({ answer: '' })}
           >
             Clear

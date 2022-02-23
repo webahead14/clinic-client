@@ -3,3 +3,14 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.labeled {
+  display: flex;
+  margin-bottom: 5px;
+  background-color: darkgray;
+  border-radius: 10px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 36px;
+  height: 80px;
+  width: 100% !important;
+}
