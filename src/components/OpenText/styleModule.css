@@ -1,8 +1,5 @@
-.centered {
+.transparent {
+  background-color: transparent;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 5vh;
-  margin: 5px;
+  justify-content: flex-end;
 }
-
