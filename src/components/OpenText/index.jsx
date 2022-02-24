@@ -1,50 +1,28 @@
-import { render } from '@testing-library/react'
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { Button } from 'antd'
 import TextArea from 'antd/lib/input/TextArea'
 import './styleModule.css'
 import 'antd/dist/antd.css'
 import Form from 'antd/lib/form/Form'
 
-class Question extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      questionText: 'Would you like to tell us anything else?',
-      answer: '',
-    }
-    this.handleAnswer = this.handleAnswer.bind(this)
-    this.submitAnswer = this.submitAnswer.bind(this)
+const Question = () => {
+  const [answer, setAnswer] = useState('')
+  const handleAnswer = e => {
+    setAnswer(e.target.value)
   }
-  handleAnswer(event) {
-    this.setState({ answer: event.target.value })
+  const clearAnswer = e => {
+    setAnswer('')
   }
-  submitAnswer(event) {
-    event.preventDefault()
-    console.log('Submitted answer: ' + event.target.value)
-  }
-  render() {
-    return (
-      <Form>
-        <span className="labeled">{this.state.questionText}</span>
-        <TextArea
-          rows={4}
-          placeholder="Please write the answer here"
-          value={this.state.answer}
-          onChange={this.handleAnswer}
-          onSubmit={this.submitAnswer}
-        />
-        <div className="transparent">
-          <Button
-            className="transparent"
-            onClick={() => this.setState({ answer: '' })}
-          >
-            Clear
-          </Button>
-        </div>
-      </Form>
-    )
-  }
+  return (
+    <Form>
+    <span className='labeled'>Would you like to say anything else ?</span>
+    <TextArea rows={4} onChange={handleAnswer} value={answer} placeholder='Please enter your answer here'/>
+    <div className='transparent'>
+    <Button onClick={clearAnswer}>Clear</Button>
+    </div>
+    </Form>
+
+  )
 }
 
 export default Question
