@@ -1,0 +1,17 @@
+.transparent {
+  background-color: transparent;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5px;
+}
+
+.labeled {
+  display: flex;
+  margin-bottom: 5px;
+  background-color: darkgray;
+  border-radius: 12px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: large;
+  height: 7vh;
+  width: 100% !important;
+}
