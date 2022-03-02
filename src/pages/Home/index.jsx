@@ -1,11 +1,20 @@
 // REMOVE THIS LINE OF CODE, IT'S  JUST FOR SHOWING THE /home PAGE
 import style from './style.module.css'
 import './style.css'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Logo from './logo.png'
 import { Card, Space } from 'antd'
 function Home() {
   // WRITE YOUR CODE BELOW THIS LINE
+  const [questionnaires, setQuestionnaires] = useState([])
+  const fetchData = () => {
+    fetch('https://wa14-clinic-api.herokuapp.com/api/client/surveys/1')
+      .then((response) => response.json())
+      .then((data) => setQuestionnaires(data))
+  }
+  useEffect(() => {
+    fetchData()
+  }, [])
   return (
     <div>
       <div className={style.header}>
@@ -17,23 +26,18 @@ function Home() {
         </div>
         <div className={style.cards}>
           <Space size="small" direction="vertical">
-            <Card title="GAD" size="small" style={{ width: '90%' }}>
-              <a href="https://wa14-clinic-api.herokuapp.com/api/client/surveys/1">
+            {questionnaires.map((quastionnaire) => (
+              <Card
+                key={quastionnaire.surveyId}
+                title={quastionnaire.surveyName}
+                size="small"
+                style={{ width: '90%' }}
+              >
                 <h3 className={style.start} className={style.start}>
                   Start Questionnaire
                 </h3>
-              </a>
-            </Card>
-            <Card title="PGI-S" size="small" style={{ width: '90%' }}>
-              <a href="https://wa14-clinic-api.herokuapp.com/api/client/surveys/2">
-                <h3 className={style.start}> Start Questionnaire</h3>
-              </a>
-            </Card>
-            <Card title="PCL-5" size="small" style={{ width: '90%' }}>
-              <a href="https://wa14-clinic-api.herokuapp.com/api/client/surveys/3">
-                <h3 className={style.start}> Start Questionaire</h3>
-              </a>
-            </Card>
+              </Card>
+            ))}
           </Space>
         </div>
       </div>
