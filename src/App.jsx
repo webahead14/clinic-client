@@ -12,6 +12,7 @@ import Home from './pages/Home'
 import Completed from './pages/Completed'
 
 // Test components
+import SurveyFeedback from './components/SurveyFeedback'
 import OpenText from './components/OpenText'
 import RadioButttonsQuestion from './components/RadioButttonsQuestion'
 import CheckboxButttonsQuestion from './components/CheckboxButttonsQuestion'
@@ -81,6 +82,11 @@ function App() {
         <Route
           path="/survey/test/scale-question"
           element={<SurveyWrapper><Scale /></SurveyWrapper>}
+        />
+        
+        <Route
+        path="/survey/test/survey-feedback"
+        element={<SurveyWrapper><SurveyFeedback /></SurveyWrapper>}
         />
 
       </Routes>
